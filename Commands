@@ -1,0 +1,27 @@
+--- For Amazon Linux AMI
+
+aws ec2 describe-images \
+    --owners amazon \
+    --filters "Name=name,Values=amzn2-ami-hvm-*-x86_64-gp2" \
+    --query "Images[*].[ImageId,Name]" \
+    --output table
+
+
+
+--- For Ubuntu AMI (Owner ID 099720109477 is Canonical, the publisher of Ubuntu)
+
+aws ec2 describe-images \
+    --owners 099720109477 \
+    --filters "Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*" \
+    --query "Images[*].[ImageId,Name]" \
+    --output table
+
+
+
+--- For Windows AMI
+
+aws ec2 describe-images \
+    --owners amazon \
+    --filters "Name=platform,Values=windows" \
+    --query "Images[*].[ImageId,Name]" \
+    --output table
